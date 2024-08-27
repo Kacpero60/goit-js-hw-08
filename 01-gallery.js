@@ -1,7 +1,3 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
-
 const images = [
   {
     preview: 'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
@@ -65,18 +61,11 @@ function createGalleryMarkup(images) {
               class="gallery-image"
               src="${preview}"
               alt="${description}"
+              data-source="${original}"
             />
           </a>
         </li>
       `;
     })
     .join('');
-}
-
-
-const lightbox = new SimpleLightbox('.gallery a', {
-  captions: true,
-  captionsData: 'alt',
-  captionDelay: 250,
-  captionPosition: 'bottom'
-});
+};
