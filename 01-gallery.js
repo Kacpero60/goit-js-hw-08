@@ -46,39 +46,64 @@ const images = [
   },
 ];
 
-const galleryContainer = document.querySelector('.gallery');
-const galleryMarkup = images.map(({ preview, original, description }) => {
-  return `
-    <li class="gallery-item">
-      <a class="gallery-link" href="${original}">
-        <img
-          class="gallery-image"
-          src="${preview}"
-          data-source="${original}"
-          alt="${description}"
-        />
-      </a>
-    </li>`;
-}).join('');
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryContainer = document.querySelector(".gallery");
 
-galleryContainer.innerHTML = galleryMarkup;
+  if (!galleryContainer) {
+    console.error("Gallery container not found");
+    return;
+  }
 
-galleryContainer.addEventListener('click', (event) => {
-  event.preventDefault();
+  const galleryMarkup = images
+    .map(({ preview, original, description }) => {
+      return `
+      <li class="gallery-item">
+        <a class="gallery-link" href="${original}">
+          <img
+            class="gallery-image"
+            src="${preview}"
+            data-source="${original}"
+            alt="${description}"
+          />
+        </a>
+      </li>`;
+    })
+    .join("");
 
-  if (event.target.nodeName !== 'IMG') return;
+  galleryContainer.innerHTML = galleryMarkup;
 
-  const largeImageURL = event.target.dataset.source;
+  galleryContainer.addEventListener("click", (event) => {
+    event.preventDefault();
 
-  const instance = basicLightbox.create(`
-      <img src="${largeImageURL}" width="800" height="600">
-  `);
+    if (event.target.nodeName !== "IMG") return;
 
-  instance.show();
+    const largeImageURL = event.target.dataset.source;
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      instance.close();
-    }
+    const instance = basicLightbox.create(`
+        <img src="${largeImageURL}" width="800" height="600">
+    `);
+
+    instance.show();
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        instance.close();
+      }
+    });
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
