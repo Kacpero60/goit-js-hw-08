@@ -1,3 +1,6 @@
+import basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
+
 const images = [
   {
     preview: 'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
@@ -63,7 +66,6 @@ const galleryMarkup = images.map(({ preview, original, description }) => {
 
 galleryContainer.innerHTML = galleryMarkup;
 
-
 galleryContainer.addEventListener('click', (event) => {
   event.preventDefault();
 
@@ -77,7 +79,6 @@ galleryContainer.addEventListener('click', (event) => {
 
   instance.show();
 
-  
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       instance.close();
